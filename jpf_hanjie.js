@@ -53,8 +53,16 @@
       multi-dimensional array, puzzle.
 	
 */
+//Run the init function when the page loads
+window.onload = init;
 
+function init() {
+      //Insert the title of the first puzzle
+      document.getElementById("puzzleTitle").innerHTML = "Puzzle 1";
 
+      //Insert the HTML code for the first puzzle table
+      document.getElementById("puzzle").innerHTML = drawPuzzle(puzzleHint, puzzleRating, puzzle1);
+}
 
 
 
