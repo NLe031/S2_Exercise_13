@@ -61,7 +61,7 @@ function init() {
       document.getElementById("puzzleTitle").innerHTML = "Puzzle 1";
 
       //Insert the HTML code for the first puzzle table
-      document.getElementById("puzzle").innerHTML = drawPuzzle(puzzleHint, puzzleRating, puzzle1);
+      document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle1Hint, puzzle1Rating, puzzle1);
 }
 
 
