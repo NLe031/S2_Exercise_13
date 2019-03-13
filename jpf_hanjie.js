@@ -91,6 +91,8 @@ function init() {
 }
 //function that retrieves the id of the clicked button
 function swapPuzzle(e) {
+      confirm("You will lose all your progress, do you wish to continue.");
+
       var puzzleID = e.target.id;
 
       //retrieve the value of the clicked button
@@ -141,6 +143,37 @@ function setupPuzzle() {
                   if (filled[i].style.backgroundColor === "rgb(255, 255, 255)") {
                         filled[i].style.backgroundColor = "rgb(255, 211, 211)";
                   }
+            }
+            //display incorrect cells in red
+            for (var i = 0; i < empty.length; i++) {
+                  if (empty[i].style.backgroundColor === "rgb(101, 101, 101)") {
+                        empty[i].style.backgroundColor = "rgb(255, 101, 101)";
+                  }
+            }
+            //remove hints after 0.5 seconds
+            setTimeout(function () {
+                  //Changed pink cells to white and red cells to grey
+                  for (var i = 0; i < puzzleCells.length; i++) {
+                        if (puzzleCells[i].style.backgroundColor === "rgb(255, 211, 211)") {
+                              puzzleCells[i].style.backgroundColor = "rgb(255, 255, 255)";
+                        }
+                        if (puzzleCells[i].style.backgroundColor === "rgb(255, 101, 101)") {
+                              puzzleCells[i].style.backgroundColor = "rgb(101, 101, 101)";
+                        }
+                  }
+            }, 1000);
+      });
+      //check the puzzle solution
+      document.getElementById("hanjieGrid").addEventListener("mouseup", function () {
+            var solved = true
+            for (var i = 0; i < puzzleCells.length; i++) {
+                  if ((puzzleCells[i].className === "filled" && puzzleCells[i].style.backgroundColor !== "rgb(101, 101, 101)") || (puzzleCells[i].className === "empty" && puzzleCells[i].style.backgroundColor === "rgb(101, 101, 101)")) {
+                        solved = false;
+                        break;
+                  }
+            }
+            if (solved) {
+                  alert("You solved the puzzle!");
             }
       });
 }
